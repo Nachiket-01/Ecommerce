@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Products Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+    }
+ nav {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-links li {
+      margin: 0 10px;
+    }
+
+    .nav-links li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .banner {
+      background-color: #f2f2f2;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .banner img {
+      max-width: 100%;
+      max-height: 200px;
+    }
+
+    .product-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .product-card {
+      width: 300px;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      max-height: 200px;
+    }
+
+    .product-card h2 {
+      margin-top: 10px;
+    }
+
+    .product-card p {
+      margin: 5px 0;
+    }
+
+    .add-to-cart {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .add-to-cart button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+ <nav>
+    <div class="logo">
+      <img src="https://1000logos.net/wp-content/uploads/2016/10/Amazon-Logo.png" alt="Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="/home">Home</a></li>
+      <li class="dropdown">
+        <a href="#">Products Category</a>
+        <div class="dropdown-content">
+          <a href="/product">Category 1</a>
+          <a href="/product">Category 2</a>
+          <a href="/product">Category 3</a>
+        </div>
+      </li>
+      <li><a href="/contact">Contact Us</a></li>
+    </ul>
+    <div class="social-icons">
+      <a href="#" class="icon"><img src="facebook-icon.png" alt="Facebook"></a>
+      <a href="#" class="icon"><img src="twitter-icon.png" alt="Twitter"></a>
+      <a href="#" class="icon"><img src="instagram-icon.png" alt="Instagram"></a>
+    </div>
+  </nav>
+  <div class="banner">
+    <img src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/f774da9141197c3c.jpg" alt="Banner">
+  </div>
+
+  <h1 style="text-align: center; margin: 40px 0;">Products Details</h1>
+
+  <div class="product-details">
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/I/71VjM5LOeYL._AC_UY1000_.jpg" alt="Product 1">
+      <h2>Product Name 1</h2>
+      <p>Price: 200</p>
+      <p>Description of Product 1</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/I/91z5KuonXrL._AC_UF1000,1000_QL80_.jpg" alt="Product 2">
+      <h2>Product Name 2</h2>
+      <p>Price: 100</p>
+      <p>Description of Product 2</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Add more product cards here -->
+
+  </div>
+
+  <div class="add-to-cart">
+    <button id="checkout-btn">Checkout</button>
+  </div>
+
+  <!-- Razorpay integration script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- Razorpay integration script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    document.getElementById('checkout-btn').addEventListener('click', function () {
+      var options = {
+        "key": "lNYGXMlXY1mDFajte2H1EAFt",
+        "amount": 50000, // Amount in paise (e.g., 50000 paise = INR 500)
+        "currency": "INR",
+        "name": "My Store",
+        "description": "Purchase",
+        "image": "your_store_logo.png",
+        "order_id": "12345", // Replace with your actual order ID from the backend
+        "handler": function (response) {
+          alert('Payment ID: ' + response.razorpay_payment_id);
+          // Add your backend logic to mark the payment as successful
+          alert('Payment Done');
+        },
+        "prefill": {
+          "name": "Nachiket Shinde",
+          "email": "nachiketshinde2001@gmail.com"
+        },
+        "notes": {
+          "address": "Street Address, City, Country"
+        },
+        "theme": {
+          "color": "#333"
+        }
+      };
+      var rzp = new Razorpay(options);
+      rzp.open();
+    });
+  </script>
+</body>
+
+</html>
